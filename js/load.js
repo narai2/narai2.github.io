@@ -15,23 +15,17 @@ const drawChart = async () => {
     var Date = null;
     
 // this is for running
-//    const data = await d3.csv("./covid_19_clean_complete.csv");
+    const data = await d3.csv("https://gist.githubusercontent.com/narai2/d8f6c8b9bbc52df49843b4e91f5fb4a6/raw/4442c4fc942f5d886571dd2e81567b92dd9bc305/covid_19_clean_complete.csv");
 
-    // this is for testing locally
-    const csv = fs.readFileSync("./covid_19_clean_complete.csv", "utf8");
-    const data =d3.csvParse(csv);
     console.log(data);
-    //
     
+        var CountryRegion = data.map(d => d.Region);
+        var Confirmed = data.map(d => +d.Confirmed);
+        var Date = data.map(d => d.Date);
 
-    
-    
-
-
-//        var CountryRegion = data.map(d => +d.Region);
-//        var Confirmed = data.map(d => +d.Confirmed);
-//        var Date = data.map(d => +d.Date);
-
+    console.log(CountryRegion);
+    console.log(Confirmed);
+    console.log(Date);
 
     var x= d3.scaleLog().base(10).domain(Date).range(Date);
     console.log(Date);
