@@ -1,3 +1,4 @@
+
 const drawChart = async () => {
     console.log("one");
 
@@ -13,15 +14,16 @@ const drawChart = async () => {
     var Confirmed = null;
     var Date = null;
     
-//    const data = await d3.csv("https://github.com/narai2/narai2.github.io/blob/main/covid_19_clean_complete.csv");
-    const data = await d3.csv("./covid_19_clean_complete.csv");
+// this is for running
+//    const data = await d3.csv("./covid_19_clean_complete.csv");
 
+    // this is for testing locally
+    const csv = fs.readFileSync("./covid_19_clean_complete.csv", "utf8");
+    const data =d3.csvParse(csv);
+    console.log(data);
+    //
     
-    d3.csv("./covid_19_clean_complete.csv").then(function(data) {
 
-        console.log(data);
-        
-    });
     
     
 
@@ -32,11 +34,11 @@ const drawChart = async () => {
 
 
     var x= d3.scaleLog().base(10).domain(Date).range(Date);
-
+    console.log(Date);
     const xavg = Date.map(value => x(value));
 
     var y= d3.scaleLog().base(10).domain(Confirmed).range(Confirmed);
-
+    console.log(Confirmed);
     const yavg = Confirmed.map(value => y(value));
     console.log("one");
 
@@ -45,15 +47,15 @@ const drawChart = async () => {
     //var margin = {top: 50, right: 50, bottom: 50, left: 50};
     d3.select('svg')
     .append('g')
-    .attr("transform","translate(50,50)")
-    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+//    .attr("transform","translate(50,50)")
+//    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
     .selectAll('circle')
     .data(data)
     .enter()
     .append('circle')
     .attr('cx',function(d,i) {return xavg[i];})
     .attr('cy',function(d,i) {return yavg[i];})
-    .attr('r', function(d,i) {return r[i];});
+//    .attr('r', function(d,i) {return r[i];});
 
 
 
