@@ -210,15 +210,15 @@ function loadChart(type, ycount){
         }
     })
 
-    //append source
-    svg.append("text")
-        .attr("x", 50)
-        .attr("y", 450)
-        .text("Source: The World Bank")
-        .style("fill", "black")
-        .style("font-size", 12)
-        .style("font-family", "Arial Black")
-    }).catch(console.log.bind(console));;
+//    //append source
+//    svg.append("text")
+//        .attr("x", 50)
+//        .attr("y", 450)
+//        .text("Source: The World Bank")
+//        .style("fill", "black")
+//        .style("font-size", 12)
+//        .style("font-family", "Arial Black")
+//    }).catch(console.log.bind(console));;
   
   // create a tooltip
   var Tooltip = d3.select("#sce-canvas-" + type)
