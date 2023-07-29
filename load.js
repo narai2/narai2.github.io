@@ -210,14 +210,14 @@ function loadChart(type, ycount){
         }
     })
 
-//    //append source
-//    svg.append("text")
-//        .attr("x", 50)
-//        .attr("y", 450)
-//        .text("Source: The World Bank")
-//        .style("fill", "black")
-//        .style("font-size", 12)
-//        .style("font-family", "Arial Black")
+    //append source
+    svg.append("text")
+        .attr("x", 50)
+        .attr("y", 450)
+        .text("Source: WHO")
+        .style("fill", "black")
+        .style("font-size", 8)
+        .style("font-family", "Arial Black")
         
         
         
