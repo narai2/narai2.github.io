@@ -1,32 +1,80 @@
-<html>
-    <head>
+
+<!doctype html>
+
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+    <title>Narrative Visualization Project For CS416:Data Visualization(UIUC, Summer 2023)</title>
+    <meta name="author" content="Nirali Rai">
+    <meta name="description"
+        content="This is the Narrative Visualization Project for UIUC course CS416: Data Visualization Summer 2023 (Final Project)">
+<!--    <link rel="stylesheet" href="css/slide.css">-->
 
-        <style>
-            .job-title {
-                text-shadow: 1px 1px gray;
-                font-size: 14px;
-                font-family: sans-serif;
-                text-decoration: underline;
-            }
+    <script src='https://d3js.org/d3.v5.min.js'></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+    <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+    <script src="./load.js" charset="utf-8"></script>
 
-            .job-title-selected {
-                font-size: 20px;
-                font-family: sans-serif;
-                color: #bdbbbb;
-                font-weight: bold;
-            }
-        </style>
-    </head>
-    
-<!--<body onload='drawChart()'>-->
-<svg width=300 height=300>
-</svg>
-<script src="./js/load.js"></script>
+</head>
 
-    </body>
-    </html>
+
+<body onload="initial()">
+    <div id="container" class="container-fluid">
+        <h1>Trends for Covid cases over first 6 months of the pandemic</h1>
+        <h2 class="subtitle">Data is based on case counts from the world health organization, displaying confirmed cases, deaths and revovered for the first 6months of the covid-19 pandemic. .</h2>
+        <div id="sce-container">
+
+            <div id="scene0" class="container">
+                <div>
+                    <p>
+                        <h1>Welcome, ready to see some Covid-19 trends?</h1>
+                        Use the Key to filter by Region
+                    </p>
+                    <p>
+                        <div id="to_scene1"><a href="#">Click to start >>></a></div>
+                    </p>
+                </div>
+            </div>
+
+            <div id="scene1" class="container" style="display:none;">
+                <div>
+                    <p>
+                        <h1>Confirmed Cases</h1>
+                        Use the Key to filter by Region
+                    </p>
+                    <p>
+                        <div id="to_scene2"><a href="#">Click to view Death Count >>></a></div>
+                    </p>
+                </div>
+                <div id="sce-canvas-confirmed"></div>
+            </div>
+
+            <div id="scene2" class="container" style="display:none;">
+                <div>
+                    <p>
+                        <h1>Death Count</h1>
+                        Use the Key to filter by Region
+                    </p>
+                    <p>
+                        <div id="to_scene3"><a href="#">Click to view Recovery Count >>></a></div>
+                    </p>
+                </div>
+                <div id="sce-canvas-deaths"></div>
+            </div>
+
+            <div id="scene3" class="container" style="display:none;">
+                <div>
+                    <p>
+                        <h1>Recovery Count</h1>
+                        Use the Key to filter by Region
+                    </p>
+                    <p>
+                        <div id="start_over" onClick="window.location.reload();"><a href="#">Start Over >>></a></div>
+                    </p>
+                <div id="sce-canvas-recovered"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
