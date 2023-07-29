@@ -218,7 +218,10 @@ function loadChart(type, ycount){
 //        .style("fill", "black")
 //        .style("font-size", 12)
 //        .style("font-family", "Arial Black")
-//    }).catch(console.log.bind(console));;
+        
+        
+        
+    }).catch(console.log.bind(console));;
   
   // create a tooltip
   var Tooltip = d3.select("#sce-canvas-" + type)
