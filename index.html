@@ -18,60 +18,60 @@
 </head>
 
 
-<body onload="initial()">
+<body onload="init()">
     <div id="container" class="container-fluid">
         <h1>Trends for Covid cases over first 6 months of the pandemic</h1>
         <h2 class="subtitle">Data is based on case counts from the world health organization, displaying confirmed cases, deaths and revovered for the first 6months of the covid-19 pandemic. .</h2>
         <div id="sce-container">
 
-            <div id="scene0" class="container">
+            <div id="s0" class="container">
                 <div>
                     <p>
                         <h1>Welcome, ready to see some Covid-19 trends?</h1>
-                        Use the Key to filter by Region
+                        Use the Key to filter by Region (Region name is clickable)
                     </p>
                     <p>
-                        <div id="to_scene1"><a href="#">Click to start >>></a></div>
+                        <div id="ts1"><a href="#">Click to start >>></a></div>
                     </p>
                 </div>
             </div>
 
-            <div id="scene1" class="container" style="display:none;">
+            <div id="s1" class="container" style="display:none;">
                 <div>
                     <p>
                         <h1>Confirmed Cases</h1>
-                        Use the Key to filter by Region
+                        Use the Key to filter by Region (Region name is clickable)
                     </p>
                     <p>
-                        <div id="to_scene2"><a href="#">Click to view Death Count >>></a></div>
+                        <div id="ts2"><a href="#">Click to view Death Count >>></a></div>
                     </p>
                 </div>
-                <div id="sce-canvas-confirmed"></div>
+                <div id="sc-confirmed"></div>
             </div>
 
-            <div id="scene2" class="container" style="display:none;">
+            <div id="s2" class="container" style="display:none;">
                 <div>
                     <p>
                         <h1>Death Count</h1>
-                        Use the Key to filter by Region
+                        Use the Key to filter by Region (Region name is clickable)
                     </p>
                     <p>
-                        <div id="to_scene3"><a href="#">Click to view Recovery Count >>></a></div>
+                        <div id="ts3"><a href="#">Click to view Recovery Count >>></a></div>
                     </p>
                 </div>
-                <div id="sce-canvas-deaths"></div>
+                <div id="sc-deaths"></div>
             </div>
 
-            <div id="scene3" class="container" style="display:none;">
+            <div id="s3" class="container" style="display:none;">
                 <div>
                     <p>
                         <h1>Recovery Count</h1>
-                        Use the Key to filter by Region
+                        Use the Key to filter by Region (Region name is clickable)
                     </p>
                     <p>
-                        <div id="start_over" onClick="window.location.reload();"><a href="#">Start Over >>></a></div>
+                        <div id="so" onClick="window.location.reload();"><a href="#">Start Over >>></a></div>
                     </p>
-                <div id="sce-canvas-recovered"></div>
+                <div id="sc-recovered"></div>
 
                 </div>
             </div>

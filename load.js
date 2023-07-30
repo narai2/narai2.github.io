@@ -1,41 +1,37 @@
-
-
-
-//  * @param {*} type "male", "female", "total" (male+female)
-function loadChart(type, ycount){
+function getChart(type, ycount){
     console.log(type);
       // Set the dimensions of the canvas / graph
       var margin = {top: 50, right: 20, bottom: 50, left: 50},
-          width = 1400 - margin.left - margin.right,
+          width = 1450 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
   
       // Set the ranges
     
         // Add the svg canvas
-        var svg = d3.select("#sce-canvas-" + type).append("svg")
+        var svg = d3.select("#sc-" + type).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//        var file = "";
-//           if(type === "confirmed"){
-//               file = "https://gist.githubusercontent.com/narai2/98e0371a8e4782eafc3dba807518df45/raw/69da7469b6a211f1f9882b09fe4c4213c5a78a76/covid_19_clean_complete_confirmed.csv";
-//           } else if(type === "deaths"){
-//               file = "https://gist.githubusercontent.com/narai2/1edbdbcf0707f34a588bcaf9f21c17d6/raw/0fe8274c69dc2ef79f943a8dc0a40b40252dd8b3/covid_19_clean_complete_deaths.csv";
-//           } else if(type === "recovered"){
-//               file = "https://gist.githubusercontent.com/narai2/f24889cceff8dd5a86c962f8c658986e/raw/f5a9e618a44a8e6d77bb14260169695118f06722/covid_19_clean_complete_recovered.csv";
-//           }
+        var file = "";
+           if(type === "confirmed"){
+               file = "https://gist.githubusercontent.com/narai2/98e0371a8e4782eafc3dba807518df45/raw/69da7469b6a211f1f9882b09fe4c4213c5a78a76/covid_19_clean_complete_confirmed.csv";
+           } else if(type === "deaths"){
+               file = "https://gist.githubusercontent.com/narai2/1edbdbcf0707f34a588bcaf9f21c17d6/raw/0fe8274c69dc2ef79f943a8dc0a40b40252dd8b3/covid_19_clean_complete_deaths.csv";
+           } else if(type === "recovered"){
+               file = "https://gist.githubusercontent.com/narai2/f24889cceff8dd5a86c962f8c658986e/raw/f5a9e618a44a8e6d77bb14260169695118f06722/covid_19_clean_complete_recovered.csv";
+           }
 
     
-    var file = "";
-       if(type === "confirmed"){
-           file = "./covid_19_clean_complete_confirmed.csv";
-       } else if(type === "deaths"){
-           file = "./covid_19_clean_complete_deaths.csv";
-       } else if(type === "recovered"){
-           file = "./covid_19_clean_complete_recovered.csv";
-       }
+//    var file = "";
+//       if(type === "confirmed"){
+//           file = "./covid_19_clean_complete_confirmed.csv";
+//       } else if(type === "deaths"){
+//           file = "./covid_19_clean_complete_deaths.csv";
+//       } else if(type === "recovered"){
+//           file = "./covid_19_clean_complete_recovered.csv";
+//       }
 
     
 
@@ -145,21 +141,19 @@ function loadChart(type, ycount){
 
 
         svg
-          // First we need to enter in a group
           .selectAll("myDots")
           .data(dataset)
           .enter()
             .append('g')
             .style("fill", function(d){ return color(d.key) })
-            .attr("class", function(d){ console.log(d.key);return d.key+type })
-          // Second we need to enter in the 'values' part of this group
+            .attr("class", function(d){ return d.key + type })
           .selectAll("myPoints")
         .data(function(d){ return d.values })
           .enter()
           .append("circle")
             .attr("cx", d => xScale(d.Date))
             .attr("cy", d => yScale(d.CaseCount))
-            .attr("r", 5)
+            .attr("r", 4)
             .attr("stroke", "white")
             .attr("opacity", 1)
                 .on("mouseover", mouseover)
@@ -168,7 +162,8 @@ function loadChart(type, ycount){
         
         
         console.log("chart");
-        //append legends
+
+    
     var legend = svg
         .selectAll('g.legend')
         .data(dataset)
@@ -183,26 +178,15 @@ function loadChart(type, ycount){
         .style("fill", d => color(d.key))
 
     legend.append("text")
-        .attr("x", width-120)
-//        .attr("x", 120)
+        .attr("x", width - 120)
         .attr("y", (d, i) => i * 20 - 30)
         .text(d => d.key)
         
     legend.on("click", function(d){
-        console.log(d)
-      // is the element currently visible ?
-//                 currentOpacity = d3.selectAll( d.key).attr("stroke-width", 20)
         currentOpacity = d3.selectAll("." +d.key+type).attr("opacity")
-        console.log(currentOpacity)
-//                 currentOpacity = d3.selectAll("."+d.key).style("opacity")
-      // Change the opacity: from 0 to 1 or from 1 to 0
-//                 d3.selectAll("." + d.key).transition().attr("stroke-width", 20)
-//        d3.selectAll("." + d.key+type).transition().attr("opacity", currentOpacity == 1 ? 0:1)
-
         if (currentOpacity == 1){
             d3.selectAll("." + d.key+type).transition().style("visibility", "hidden")
             d3.selectAll("." + d.key+type).transition().attr("opacity", 0)
-
         }
         if(currentOpacity == 0) {
             d3.selectAll("." + d.key+type).transition().style("visibility", "visible")
@@ -210,7 +194,6 @@ function loadChart(type, ycount){
         }
     })
 
-    //append source
     svg.append("text")
         .attr("x", 50)
         .attr("y", 450)
@@ -224,7 +207,7 @@ function loadChart(type, ycount){
     }).catch(console.log.bind(console));;
   
   // create a tooltip
-  var Tooltip = d3.select("#sce-canvas-" + type)
+  var Tooltip = d3.select("#sc-" + type)
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
@@ -234,8 +217,8 @@ function loadChart(type, ycount){
     .style("border-radius", "5px")
     .style("padding", "5px")
 
-  // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
+
+var mouseover = function(d) {
     Tooltip
       .style("opacity", 1)
     d3.select(this)
@@ -294,43 +277,42 @@ function loadChart(type, ycount){
       .call(makeAnnotations)
 }
 
-function initial(){
-    document.getElementById("to_scene1").addEventListener("click", function() {
-        switchVisibility('scene0');
-        switchVisibility('scene1');
-        loadChart("confirmed", 9000000);
+function init(){
+    document.getElementById("ts1").addEventListener("click", function() {
+        switchCharts('s0');
+        switchCharts('s1');
+        getChart("confirmed", 9000000);
     });
     
-    document.getElementById("to_scene2").addEventListener("click", function() {
-        switchVisibility('scene1');
-        switchVisibility('scene2');
-        switchVisibility('sce-canvas-confirmed');
-        loadChart("deaths", 400000);
+    document.getElementById("ts2").addEventListener("click", function() {
+        switchCharts('s1');
+        switchCharts('s2');
+        switchCharts('sc-confirmed');
+        getChart("deaths", 400000);
     });
     
-    document.getElementById("to_scene3").addEventListener("click", function() {
-        switchVisibility('scene2');
-        switchVisibility('scene3');
-        switchVisibility('sce-canvas-deaths');
-        loadChart("recovered", 5000000);
+    document.getElementById("ts3").addEventListener("click", function() {
+        switchCharts('s2');
+        switchCharts('s3');
+        switchCharts('sc-deaths');
+        getChart("recovered", 5000000);
     });
     
-    document.getElementById("start_over").addEventListener("click", function() {
-        switchVisibility('scene3');
-        switchVisibility('scene0');
-        switchVisibility('sce-canvas-recovered');
-        switchVisibility("confirmed", 9000000);
+    document.getElementById("so").addEventListener("click", function() {
+        switchCharts('s3');
+        switchCharts('s0');
+        switchCharts('sc-recovered');
+        switchCharts("confirmed", 9000000);
     });
 }
 
-function switchVisibility(scene){
-    console.log(scene);
-    var x = document.getElementById(scene);
-    console.log(x.style.display);
-    if (x.style.display === "none") {
-        x.style.display = "";
-      } else {
-        x.style.display = "none";
+function switchCharts(scene){
+    var s = document.getElementById(scene);
+    if (s.style.display === "none"){
+        s.style.display = "";
+      }
+    else {
+        s.style.display = "none";
       }
 }
 
