@@ -14,24 +14,24 @@ function getChart(type, ycount){
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var file = "";
-           if(type === "confirmed"){
-               file = "https://gist.githubusercontent.com/narai2/98e0371a8e4782eafc3dba807518df45/raw/69da7469b6a211f1f9882b09fe4c4213c5a78a76/covid_19_clean_complete_confirmed.csv";
-           } else if(type === "deaths"){
-               file = "https://gist.githubusercontent.com/narai2/1edbdbcf0707f34a588bcaf9f21c17d6/raw/0fe8274c69dc2ef79f943a8dc0a40b40252dd8b3/covid_19_clean_complete_deaths.csv";
-           } else if(type === "recovered"){
-               file = "https://gist.githubusercontent.com/narai2/f24889cceff8dd5a86c962f8c658986e/raw/f5a9e618a44a8e6d77bb14260169695118f06722/covid_19_clean_complete_recovered.csv";
-           }
+//        var file = "";
+//           if(type === "confirmed"){
+//               file = "https://gist.githubusercontent.com/narai2/98e0371a8e4782eafc3dba807518df45/raw/69da7469b6a211f1f9882b09fe4c4213c5a78a76/covid_19_clean_complete_confirmed.csv";
+//           } else if(type === "deaths"){
+//               file = "https://gist.githubusercontent.com/narai2/1edbdbcf0707f34a588bcaf9f21c17d6/raw/0fe8274c69dc2ef79f943a8dc0a40b40252dd8b3/covid_19_clean_complete_deaths.csv";
+//           } else if(type === "recovered"){
+//               file = "https://gist.githubusercontent.com/narai2/f24889cceff8dd5a86c962f8c658986e/raw/f5a9e618a44a8e6d77bb14260169695118f06722/covid_19_clean_complete_recovered.csv";
+//           }
 
     
-//    var file = "";
-//       if(type === "confirmed"){
-//           file = "./covid_19_clean_complete_confirmed.csv";
-//       } else if(type === "deaths"){
-//           file = "./covid_19_clean_complete_deaths.csv";
-//       } else if(type === "recovered"){
-//           file = "./covid_19_clean_complete_recovered.csv";
-//       }
+    var file = "";
+       if(type === "confirmed"){
+           file = "./covid_19_clean_complete_confirmed.csv";
+       } else if(type === "deaths"){
+           file = "./covid_19_clean_complete_deaths.csv";
+       } else if(type === "recovered"){
+           file = "./covid_19_clean_complete_recovered.csv";
+       }
 
     
 
